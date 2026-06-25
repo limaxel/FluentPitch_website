@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }, {
-        threshold: 0.1
+        threshold: 0
     });
 
     // Add initial styles to elements we want to animate

@@ -1,248 +1,642 @@
+/* FluentPitch — "The Coach's Markup"
+   Paper & ink, one pen. A single committed light theme. */
+
 :root {
-  --bg-color: #0b0f19;
-  --surface-color: rgba(255, 255, 255, 0.03);
-  --surface-border: rgba(255, 255, 255, 0.08);
-  --primary-glow: rgba(99, 102, 241, 0.4);
-  --secondary-glow: rgba(168, 85, 247, 0.4);
-  --text-primary: #ffffff;
-  --text-secondary: #94a3b8;
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  /* paper & ink */
+  --paper: #F6F1E7;
+  --paper-high: #FDFBF5;
+  --paper-dim: #EFE8DA;
+  --ink: #1D1A16;
+  --ink-soft: #5C564C;
+  --ink-faint: #948C7E;
+  --line: #DDD4C3;
+
+  /* the coach's pen */
+  --pen: #C73E1D;
+  --pen-deep: #9E2F13;
+  --pen-wash: #F7E4DC;
+
+  /* approval */
+  --mark: #31684A;
+  --mark-wash: #E2EDE4;
+
+  /* type */
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Schibsted Grotesk', -apple-system, 'Helvetica Neue', sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', monospace;
+
+  /* shape */
+  --radius-control: 6px;
+  --radius-card: 10px;
+  --shadow-card: 0 1px 2px rgba(29, 26, 22, 0.05), 0 4px 16px rgba(29, 26, 22, 0.04);
+
+  /* motion */
+  --ease-out: cubic-bezier(0.2, 0.6, 0.3, 1);
+  --dur-fast: 150ms;
+  --dur-med: 200ms;
 }
 
-* {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
 body {
-  background-color: var(--bg-color);
-  color: var(--text-primary);
-  font-family: var(--font-sans);
+  background-color: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-weight: 400;
   line-height: 1.6;
+  font-size: 1.0625rem;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
   overflow-x: hidden;
+  position: relative;
 }
 
-/* Gradients and Background */
-.bg-gradients {
+/* Paper grain: subtle noise over the page, ~3.5% opacity */
+body::after {
+  content: "";
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: -1;
-  overflow: hidden;
+  inset: 0;
   pointer-events: none;
+  z-index: 1;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  opacity: .035;
+  mix-blend-mode: multiply;
 }
 
-.glow-1 {
-  position: absolute;
-  top: -10%;
-  left: -10%;
-  width: 50vw;
-  height: 50vw;
-  background: radial-gradient(circle, var(--primary-glow) 0%, rgba(0,0,0,0) 70%);
-  filter: blur(80px);
-  animation: float 20s ease-in-out infinite alternate;
-}
-
-.glow-2 {
-  position: absolute;
-  bottom: -10%;
-  right: -10%;
-  width: 50vw;
-  height: 50vw;
-  background: radial-gradient(circle, var(--secondary-glow) 0%, rgba(0,0,0,0) 70%);
-  filter: blur(80px);
-  animation: float 15s ease-in-out infinite alternate-reverse;
-}
-
-@keyframes float {
-  0% { transform: translate(0, 0); }
-  100% { transform: translate(10%, 10%); }
-}
-
-/* Glassmorphism Container */
-.glass-panel {
-  background: var(--surface-color);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--surface-border);
-  border-radius: 24px;
-  padding: 2.5rem;
-}
-
-/* Layout */
+/* Content sits above the grain */
 .container {
-  max-width: 1200px;
+  position: relative;
+  z-index: 2;
+  max-width: 1080px;
   margin: 0 auto;
   padding: 0 2rem;
 }
 
+/* Skip link */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  background: var(--ink);
+  color: var(--paper-high);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-control);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+}
+
+/* ------------------------------------------------------------------ */
+/* Nav                                                                 */
+/* ------------------------------------------------------------------ */
 nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 2rem 0;
+  padding: 1.75rem 0;
+  border-bottom: 1px solid var(--line);
 }
 
-.logo {
-  font-size: 1.5rem;
-  font-weight: 800;
-  letter-spacing: -0.05em;
-  background: linear-gradient(to right, #fff, #a5b4fc);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-decoration: none;
-}
-
-/* Hero Section */
-.hero {
-  min-height: 80vh;
+.brand {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
-  text-align: center;
-  padding: 4rem 0;
+  gap: 0.6rem;
+  text-decoration: none;
+  color: var(--ink);
 }
 
-h1 {
-  font-size: 4.5rem;
-  font-weight: 800;
-  line-height: 1.1;
-  letter-spacing: -0.03em;
+.brand img {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+}
+
+.wordmark {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.4rem;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+/* Stamp — small mono tag with a border, like a rubber stamp */
+.stamp {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--pen);
+  border: 1px solid var(--pen);
+  border-radius: 4px;
+  padding: 0.2rem 0.5rem;
+  transform: rotate(-1deg);
+  white-space: nowrap;
+}
+
+/* ------------------------------------------------------------------ */
+/* Kicker (mono, uppercase)                                            */
+/* ------------------------------------------------------------------ */
+.kicker {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.kicker .num {
+  color: var(--pen);
+}
+
+/* ------------------------------------------------------------------ */
+/* Hero                                                                */
+/* ------------------------------------------------------------------ */
+.hero {
+  padding: 5.5rem 0 3.5rem;
+  max-width: 780px;
+}
+
+.hero .kicker {
   margin-bottom: 1.5rem;
 }
 
-.text-gradient {
-  background: linear-gradient(135deg, #818cf8 0%, #c084fc 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+h1 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(2.6rem, 7vw, 4.6rem);
+  line-height: 1.06;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin-bottom: 1.75rem;
 }
 
-.hero p {
-  font-size: 1.25rem;
-  color: var(--text-secondary);
-  max-width: 600px;
+/* The emphasized word: italic + swash underline */
+.em {
+  position: relative;
+  font-style: italic;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.swash {
+  position: absolute;
+  left: -0.04em;
+  right: -0.04em;
+  bottom: -0.24em;
+  width: calc(100% + 0.08em);
+  height: 0.42em;
+  color: var(--pen);
+  overflow: visible;
+}
+
+/* Default (no JS): swash is simply drawn, no animation. */
+.swash path {
+  stroke-dasharray: 240;
+  stroke-dashoffset: 0;
+}
+
+/* With JS, start hidden then draw in once on load — the single "moment". */
+.js .swash path {
+  stroke-dashoffset: 240;
+}
+.js .swash.draw path {
+  animation: swash-draw 640ms var(--ease-out) forwards;
+}
+
+@keyframes swash-draw {
+  to { stroke-dashoffset: 0; }
+}
+
+.lede {
+  font-size: clamp(1.1rem, 2.4vw, 1.3rem);
+  line-height: 1.5;
+  color: var(--ink-soft);
+  max-width: 40ch;
+  margin-bottom: 2.25rem;
+}
+
+.lede strong {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.cta-row {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+/* ------------------------------------------------------------------ */
+/* Buttons                                                             */
+/* ------------------------------------------------------------------ */
+.btn {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: var(--radius-control);
+  padding: 0.85rem 1.5rem;
+  transition: background-color var(--dur-med) var(--ease-out),
+              color var(--dur-med) var(--ease-out);
+}
+
+.btn-primary {
+  background: var(--ink);
+  color: var(--paper-high);
+  border: 1px solid var(--ink);
+}
+.btn-primary:hover {
+  background: var(--pen);
+  border-color: var(--pen);
+}
+.btn-primary:active {
+  background: var(--pen-deep);
+  border-color: var(--pen-deep);
+}
+
+.cta-note {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--ink-faint);
+  letter-spacing: 0.02em;
+}
+
+/* ------------------------------------------------------------------ */
+/* Margin annotations — decorative coach's marks                       */
+/* ------------------------------------------------------------------ */
+.annotations {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.75rem;
+  margin-top: 2.75rem;
+  padding-top: 1.75rem;
+  border-top: 1px dashed var(--line);
+}
+
+.anno {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+  letter-spacing: 0.01em;
+}
+.anno .t {
+  color: var(--ink-faint);
+}
+.anno .ok {
+  color: var(--mark);
+}
+.anno .flag {
+  color: var(--pen);
+}
+
+/* ------------------------------------------------------------------ */
+/* Pitch contour divider                                               */
+/* ------------------------------------------------------------------ */
+.contour {
+  display: block;
+  width: 100%;
+  height: 48px;
+  margin: 3.5rem 0;
+  color: var(--ink-faint);
+  overflow: visible;
+}
+.contour .line {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+}
+.contour .peak {
+  fill: var(--pen);
+}
+
+/* ------------------------------------------------------------------ */
+/* Features                                                            */
+/* ------------------------------------------------------------------ */
+.reads {
+  margin-top: 5.5rem;
+}
+
+.section-head {
+  max-width: 46ch;
   margin-bottom: 2.5rem;
 }
-
-/* Buttons */
-.btn-primary {
-  display: inline-block;
-  background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
-  color: white;
-  padding: 1rem 2.5rem;
-  border-radius: 9999px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  border: none;
-  cursor: pointer;
-  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+.section-head h2 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.7rem, 4vw, 2.4rem);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  margin-top: 0.9rem;
 }
 
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(99, 102, 241, 0.6);
-}
-
-/* Features */
 .features {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  margin: 4rem 0;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
 }
 
-.feature-card {
-  transition: transform 0.3s ease;
+.feature {
+  background: var(--paper-high);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
 }
 
-.feature-card:hover {
-  transform: translateY(-5px);
+.feature .kicker {
+  margin-bottom: 1.1rem;
 }
 
-.feature-card h3 {
-  font-size: 1.25rem;
-  margin-bottom: 1rem;
+.feature h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.4rem;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.7rem;
 }
 
-.feature-card p {
-  color: var(--text-secondary);
-  font-size: 1rem;
+.feature p {
+  color: var(--ink-soft);
+  font-size: 0.98rem;
+  line-height: 1.55;
+  margin-bottom: 1.25rem;
 }
 
-/* Footer */
+.feature .anno {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+}
+
+/* ------------------------------------------------------------------ */
+/* Manuscript — "how a session reads"                                  */
+/* ------------------------------------------------------------------ */
+.manuscript {
+  background: var(--paper-high);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: 1.5rem 1.75rem 0.5rem;
+}
+
+.utterance {
+  display: grid;
+  grid-template-columns: 4.5rem 1fr;
+  gap: 1rem;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.manuscript .utterance:last-child {
+  border-bottom: none;
+}
+
+.utterance .ts {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--ink-faint);
+  padding-top: 0.35rem;
+  letter-spacing: 0.02em;
+}
+
+.utterance .said {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1.18rem;
+  line-height: 1.4;
+  color: var(--ink);
+}
+
+.utterance .note {
+  display: block;
+  margin-top: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  line-height: 1.4;
+  letter-spacing: 0.01em;
+}
+.utterance .note.flag { color: var(--pen); }
+.utterance .note.ok { color: var(--mark); }
+
+/* highlighted span inside spoken text (a pen circle) */
+.hl {
+  color: var(--pen-deep);
+  box-shadow: inset 0 -0.5em 0 var(--pen-wash);
+}
+
+/* ------------------------------------------------------------------ */
+/* Footer                                                              */
+/* ------------------------------------------------------------------ */
 footer {
-  border-top: 1px solid var(--surface-border);
-  padding: 2rem 0;
-  margin-top: 4rem;
+  margin-top: 5rem;
+  padding: 2rem 0 3rem;
+  border-top: 1px solid var(--line);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: var(--text-secondary);
+  gap: 1rem;
+  flex-wrap: wrap;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--ink-faint);
+  letter-spacing: 0.01em;
 }
 
 footer a {
-  color: var(--text-secondary);
+  color: var(--ink-soft);
   text-decoration: none;
-  transition: color 0.2s;
+  border-bottom: 2px solid var(--pen);
+  padding-bottom: 1px;
+  transition: color var(--dur-fast) var(--ease-out);
 }
-
 footer a:hover {
-  color: var(--text-primary);
+  color: var(--pen);
 }
 
-/* Typography Page (Privacy Policy) */
+/* ------------------------------------------------------------------ */
+/* Text links (in prose)                                               */
+/* ------------------------------------------------------------------ */
+.prose a,
+a.text-link {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 2px solid var(--pen);
+  text-underline-offset: 3px;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+.prose a:hover,
+a.text-link:hover {
+  color: var(--pen);
+}
+
+/* ------------------------------------------------------------------ */
+/* Prose (privacy.html)                                                */
+/* ------------------------------------------------------------------ */
 .prose {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 3rem 4rem;
+  max-width: 900px;
+  margin: 3.5rem auto 0;
+  background: var(--paper-high);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: 3rem 3.25rem;
 }
 
 .prose h1 {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-  line-height: 1.2;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(2.2rem, 5vw, 3rem);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.75rem;
 }
 
 .prose h2 {
-  font-size: 1.8rem;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.55rem;
+  line-height: 1.15;
+  color: var(--ink);
   margin-top: 2.5rem;
-  margin-bottom: 1rem;
-  color: #fff;
+  margin-bottom: 0.9rem;
 }
 
 .prose h3 {
-  font-size: 1.3rem;
-  margin-top: 1.5rem;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--pen);
+  margin-top: 1.75rem;
   margin-bottom: 0.75rem;
-  color: #e2e8f0;
 }
 
 .prose p {
-  margin-bottom: 1.25rem;
-  color: var(--text-secondary);
+  margin-bottom: 1.2rem;
+  color: var(--ink-soft);
 }
 
 .prose ul {
-  margin-bottom: 1.25rem;
-  padding-left: 1.5rem;
-  color: var(--text-secondary);
+  margin-bottom: 1.2rem;
+  padding-left: 1.4rem;
+  color: var(--ink-soft);
 }
 
 .prose li {
   margin-bottom: 0.5rem;
 }
 
-.prose strong {
-  color: #fff;
+.prose li::marker {
+  color: var(--ink-faint);
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  h1 { font-size: 3rem; }
-  .prose { padding: 2rem; }
+.prose strong {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+/* ------------------------------------------------------------------ */
+/* Focus                                                               */
+/* ------------------------------------------------------------------ */
+:focus-visible {
+  outline: 2px solid var(--pen);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+/* Don't double up the underline focus on links that already have a ring */
+
+/* ------------------------------------------------------------------ */
+/* Responsive                                                          */
+/* ------------------------------------------------------------------ */
+@media (max-width: 860px) {
+  .features {
+    grid-template-columns: 1fr;
+  }
+  .hero {
+    padding: 4rem 0 2.5rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .container {
+    padding: 0 1.25rem;
+  }
+  .prose {
+    padding: 2rem 1.5rem;
+  }
+  .nav-right {
+    gap: 0.75rem;
+  }
+  .utterance {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+  }
+  .utterance .ts {
+    padding-top: 0;
+  }
+  footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 360px) {
+  body {
+    font-size: 1rem;
+  }
+  .wordmark {
+    font-size: 1.2rem;
+  }
+  .brand img {
+    height: 34px;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Reduced motion                                                      */
+/* ------------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .swash path,
+  .js .swash path,
+  .js .swash.draw path {
+    stroke-dashoffset: 0;
+    animation: none;
+  }
 }

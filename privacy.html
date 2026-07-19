@@ -6,27 +6,27 @@
     <title>Privacy Policy | FluentPitch</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="bg-gradients">
-        <div class="glow-1"></div>
-        <div class="glow-2"></div>
-    </div>
+    <a class="skip-link" href="#main">Skip to content</a>
 
     <div class="container">
         <nav>
-            <a href="index.html" style="display: flex; align-items: center; text-decoration: none; gap: 0.5rem;">
-                <img src="assets/logo.png" alt="FluentPitch Logo" style="height: 48px; width: auto; object-fit: contain;">
-                <div class="logo">FluentPitch</div>
+            <a class="brand" href="index.html">
+                <img src="assets/logo-ink.png" alt="FluentPitch">
+                <span class="wordmark">FluentPitch</span>
             </a>
+            <div class="nav-right">
+                <span class="stamp">Beta</span>
+            </div>
         </nav>
 
-        <main class="glass-panel prose">
+        <main id="main" class="prose">
             <h1>Privacy Policy</h1>
-            <p><strong>Last Updated:</strong> June 21, 2026</p>
+            <p><strong>Last Updated:</strong> July 19, 2026</p>
 
             <p>Welcome to FluentPitch! We are committed to protecting your privacy and ensuring you have a secure experience when using our AI-driven interview coaching application ("App"). This Privacy Policy explains how we collect, use, and safeguard your information.</p>
 
@@ -42,11 +42,19 @@
             <h3>B. Device and Media Data</h3>
             <ul>
                 <li><strong>Camera and Microphone Data:</strong> FluentPitch requires access to your device's camera and microphone to conduct mock interviews.</li>
-                <li><strong>Interview Recordings:</strong> With your explicit permission, we record video and audio locally during your practice sessions. These recordings may be saved to your device's native Photo Library if you choose to export them.</li>
-                <li><strong>Biometric & Behavioral Data:</strong> Our application analyzes your body language, eye contact, and posture during the interview to provide actionable feedback.</li>
+                <li><strong>Interview Recordings:</strong> With your explicit permission, we record video and audio locally during your practice sessions. Recordings are stored only on your device and are never uploaded to our servers; they may be saved to your device's native Photo Library if you choose to export them.</li>
+                <li><strong>Biometric & Behavioral Data:</strong> Our application analyzes your body language, eye contact, and posture during the interview to provide actionable feedback. <strong>This analysis runs entirely on your device.</strong> Raw camera frames, facial landmarks, and gaze coordinates never leave your phone — only aggregated summary metrics (for example, an eye-contact percentage per answer) are sent to our servers.</li>
+                <li><strong>Speech:</strong> Your spoken answers are transcribed to text on your device. Only the text transcript is sent to our servers for AI feedback; the audio itself is not uploaded.</li>
             </ul>
 
-            <h3>C. Usage Data</h3>
+            <h3>C. Purchases, Ads, and Analytics</h3>
+            <ul>
+                <li><strong>Purchase Data:</strong> In-app purchases are billed by Apple; we never see your payment details. We receive transaction records (product, time, and an anonymised transaction identifier) via our purchase-management provider (RevenueCat) to credit your account.</li>
+                <li><strong>Advertising:</strong> Optional rewarded ads are served by Google AdMob, which may use device identifiers to deliver ads, subject to the App Tracking Transparency choice you make in iOS. Declining tracking does not limit any app functionality.</li>
+                <li><strong>Usage Events:</strong> We record basic in-app events (for example, that a paywall or feature was viewed) in our own database — no third-party analytics service receives your usage data. These events are deleted with your account.</li>
+            </ul>
+
+            <h3>D. Usage Data</h3>
             <ul>
                 <li>We collect standard analytical information about how you interact with the app, including session durations, feature usage, and error logs, to help us improve the platform.</li>
             </ul>
@@ -54,7 +62,7 @@
             <h2>2. How We Use Your Information</h2>
             <p>Your data is strictly used to provide and improve the core functionality of FluentPitch:</p>
             <ul>
-                <li><strong>AI Analysis:</strong> Your audio responses and behavioral data are processed by our backend AI models to generate transcripts, assess your performance, and provide personalized coaching feedback.</li>
+                <li><strong>AI Analysis:</strong> Your answer transcripts (generated on your device) and aggregated behavioral metrics are processed by our backend AI models to assess your performance and provide personalized coaching feedback.</li>
                 <li><strong>Account Management:</strong> To maintain your profile, secure your account, and provide customer support.</li>
                 <li><strong>Service Improvement:</strong> To analyze aggregate, anonymized usage trends to fix bugs and develop new features.</li>
             </ul>
@@ -81,12 +89,12 @@
             <h2>6. Your Rights</h2>
             <p>You have the right to:</p>
             <ul>
-                <li>Access the personal data we hold about you.</li>
+                <li>Access the personal data we hold about you — the app includes a free, permanent <strong>Export Data</strong> feature (Profile → Export Data) that downloads your history as JSON.</li>
                 <li>Request corrections to your profile data.</li>
-                <li>Request the deletion of your account and associated data.</li>
+                <li>Delete your account and all associated data directly in the app (<strong>Profile → Delete Account</strong>) — no email required. Deletion is immediate and irreversible.</li>
                 <li>Opt-out of non-essential data collection (where applicable).</li>
             </ul>
-            <p>To exercise these rights, please contact us at <strong>support@fluentpitch.com</strong>.</p>
+            <p>For anything not covered in-app, contact us at <strong>support@fluentpitch.com</strong>.</p>
 
             <h2>7. Changes to This Policy</h2>
             <p>We may update this Privacy Policy from time to time. We will notify you of any significant changes by posting the new policy in the App and updating the "Last Updated" date.</p>
@@ -101,6 +109,7 @@
             <div>&copy; 2026 FluentPitch. All rights reserved.</div>
             <div>
                 <a href="index.html">Home</a>
+                <a href="terms.html">Terms of use</a>
             </div>
         </footer>
     </div>

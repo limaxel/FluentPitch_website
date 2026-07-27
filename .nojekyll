@@ -1,0 +1,2 @@
+Prevent GitHub Pages from processing the site with Jekyll so the required
+.well-known/apple-app-site-association file is published unchanged.

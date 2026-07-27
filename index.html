@@ -1,21 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FluentPitch | AI interview coach</title>
-    <meta name="description"
-        content="FluentPitch records your mock interview and hands it back annotated — pacing, eye contact, and whether your answer actually addressed the question. iOS beta.">
+    <meta name="description" content="Practice interviews on your iPhone and get clear feedback on your answers, pacing, eye contact, and posture.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
     <a class="skip-link" href="#main">Skip to content</a>
 
@@ -25,99 +20,82 @@
                 <img src="assets/logo-ink.png" alt="FluentPitch">
                 <span class="wordmark">FluentPitch</span>
             </a>
-            <div class="nav-right">
-                <span class="stamp">Beta</span>
-            </div>
         </nav>
 
         <main id="main">
             <section class="hero">
-                <h1>Rehearse it. Then<br>read the <span class="em">markup<svg class="swash" viewBox="0 0 200 14"
-                            preserveAspectRatio="none" aria-hidden="true">
-                            <path d="M3 10 C 40 4, 80 12, 118 7 S 180 6, 197 9" fill="none" stroke="currentColor"
-                                stroke-width="4" stroke-linecap="round" />
-                        </svg></span>.</h1>
-                <p class="lede">FluentPitch records your mock interview and hands it back annotated — where your pacing
-                    drifts, whether you held eye contact, and <strong>whether your answer actually addressed the
-                        question.</strong></p>
+                <p class="kicker"><span class="num">AI</span> <span data-copy="hero.kicker">interview coach</span></p>
+                <h1 data-copy-html="hero.title">Rehearse it. Then<br>read the <span class="em">markup<svg class="swash" viewBox="0 0 200 14" preserveAspectRatio="none" aria-hidden="true"><path d="M3 10 C 40 4, 80 12, 118 7 S 180 6, 197 9" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/></svg></span>.</h1>
+                <p class="lede" data-copy-html="hero.lede">FluentPitch records your mock interview and hands it back annotated — where your pacing drifts, whether you held eye contact, and <strong>whether your answer actually addressed the question.</strong></p>
 
                 <div class="cta-row">
-                    <a href="#" class="btn btn-primary">Download TestFlight beta</a>
+                    <a href="#" class="btn btn-primary" data-copy="hero.cta">Join TestFlight</a>
                 </div>
             </section>
 
-            <!-- <svg class="contour" viewBox="0 0 1000 48" preserveAspectRatio="none" aria-hidden="true"
-                role="presentation">
-                <polyline class="line"
-                    points="0,30 60,28 120,20 180,32 240,14 300,26 360,30 420,10 480,24 540,34 600,18 660,28 720,8 780,26 840,30 900,20 960,30 1000,26" />
-                <circle class="peak" cx="240" cy="14" r="3.5" />
-                <circle class="peak" cx="420" cy="10" r="3.5" />
-                <circle class="peak" cx="720" cy="8" r="3.5" />
-            </svg> -->
-
             <section class="features" aria-label="What FluentPitch does">
                 <article class="feature">
-                    <p class="kicker"><span class="num">01</span> · Biometrics</p>
-                    <h3>It sees the tells you can't feel</h3>
-                    <p>FluentPitch tracks eye contact, posture, and pace frame by frame, then shows you the habits that
-                        surface when the pressure is on.</p>
+                    <p class="kicker"><span class="num">01</span> · <span data-copy="features.0.kicker">Delivery coaching</span></p>
+                    <h3 data-copy="features.0.title">Notice the habits that are hard to catch</h3>
+                    <p data-copy="features.0.body">Track eye contact, posture, and pacing during practice, then review the patterns that show up under pressure.</p>
                 </article>
 
                 <article class="feature">
-                    <p class="kicker"><span class="num">02</span> · Feedback</p>
-                    <h3>Read against the real job</h3>
-                    <p>Add the job description and your transcript is graded against it — the claim you left unproven,
-                        the question you talked around, the point you actually nailed.</p>
+                    <p class="kicker"><span class="num">02</span> · <span data-copy="features.1.kicker">Role alignment</span></p>
+                    <h3 data-copy="features.1.title">Measure each answer against the job</h3>
+                    <p data-copy="features.1.body">Add a job description to see which claims need evidence, which questions you missed, and what landed well.</p>
                 </article>
 
                 <article class="feature">
-                    <p class="kicker"><span class="num">03</span> · Private</p>
-                    <h3>Stays on your phone</h3>
-                    <p>Video is processed on-device and never uploaded. Audio is analyzed only to coach you — never used
-                        to train models, never sold.</p>
+                    <p class="kicker"><span class="num">03</span> · <span data-copy="features.2.kicker">Privacy</span></p>
+                    <h3 data-copy="features.2.title">Your biometric data stays on your phone</h3>
+                    <p data-copy="features.2.body">Video is processed on-device and never uploaded. Raw biometric telemetry never leaves your device.</p>
                 </article>
             </section>
 
             <section class="reads" aria-labelledby="reads-head">
                 <div class="section-head">
-                    <p class="kicker"><span class="num">sample</span> of how a session reads</p>
-                    <h2 id="reads-head">One answer, marked up</h2>
+                    <p class="kicker"><span class="num">Sample</span> · <span data-copy="sample.kicker">playback review</span></p>
+                    <h2 id="reads-head" data-copy="sample.title">See your delivery in context</h2>
                 </div>
 
-                <div class="manuscript">
-                    <div class="utterance">
-                        <span class="ts">00:12</span>
-                        <p class="said">"In my last role I <span class="hl">basically</span> owned the entire data
-                            migration."
-                            <span class="note flag">— "basically" hedges a strong claim. Own it.</span>
-                        </p>
+                <div class="playback-demo" aria-label="Interactive interview playback sample">
+                    <div class="playback-screen">
+                        <div class="playback-head">
+                            <span data-copy="sample.label">Practice playback</span>
+                            <span data-copy="sample.question">Question 3</span>
+                        </div>
+                        <div class="playback-stage">
+                            <video class="playback-video" data-playback-video muted playsinline autoplay preload="metadata" aria-label="Candidate practising a video interview">
+                                <source src="assets/interview_video_demo.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="playback-controls">
+                            <span class="playback-play"></span>
+                            <div class="playback-track" role="tablist" aria-label="Feedback moments">
+                                <button class="playback-marker is-active" type="button" role="tab" aria-selected="true" aria-controls="playback-feedback" data-moment-index="0" style="--position: 16%" data-copy="sample.moments.0.time">00:02</button>
+                                <button class="playback-marker" type="button" role="tab" aria-selected="false" aria-controls="playback-feedback" data-moment-index="1" style="--position: 50%" data-copy="sample.moments.1.time">00:05</button>
+                                <button class="playback-marker" type="button" role="tab" aria-selected="false" aria-controls="playback-feedback" data-moment-index="2" style="--position: 82%" data-copy="sample.moments.2.time">00:08</button>
+                            </div>
+                            <span class="playback-time" data-copy="sample.duration">01:08</span>
+                        </div>
                     </div>
-                    <div class="utterance">
-                        <span class="ts">00:29</span>
-                        <p class="said">"We moved forty terabytes with zero downtime, over a single weekend."
-                            <span class="note ok">&check; concrete and specific — this is the sentence that
-                                lands.</span>
-                        </p>
-                    </div>
-                    <div class="utterance">
-                        <span class="ts">00:41</span>
-                        <p class="said">"It was, <span class="hl">um</span>, pretty rough but we, we got there in the
-                            end."
-                            <span class="note flag">— two fillers, and you end on the struggle. Land the result
-                                instead.</span>
-                        </p>
+                    <div class="playback-insight" id="playback-feedback" role="tabpanel" tabindex="-1">
+                        <p class="kicker"><span class="num" data-playback-time>00:02</span> · <span data-playback-label>Hedging</span></p>
+                        <h3 data-playback-title>Start with the result.</h3>
+                        <p data-playback-body>Lead with the impact, then explain how you got there.</p>
                     </div>
                 </div>
             </section>
         </main>
 
         <footer>
-            <div>&copy; 2026 FluentPitch</div>
+            <div data-copy="footer">&copy; 2026 FluentPitch</div>
             <div><a href="privacy.html">Privacy policy</a> <a href="terms.html">Terms of use</a></div>
         </footer>
     </div>
 
+    <script src="copy.js"></script>
     <script src="script.js"></script>
 </body>
-
 </html>

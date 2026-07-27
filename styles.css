@@ -126,10 +126,11 @@ nav {
 }
 
 .wordmark {
-  font-family: var(--font-display);
-  font-weight: 600;
+  /* Match the in-app wordmark: confident system sans, not editorial serif. */
+  font-family: var(--font-body);
+  font-weight: 700;
   font-size: 1.4rem;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.035em;
   color: var(--ink);
 }
 
@@ -281,61 +282,6 @@ h1 {
   border-color: var(--pen-deep);
 }
 
-.cta-note {
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  color: var(--ink-faint);
-  letter-spacing: 0.02em;
-}
-
-/* ------------------------------------------------------------------ */
-/* Margin annotations — decorative coach's marks                       */
-/* ------------------------------------------------------------------ */
-.annotations {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem 1.75rem;
-  margin-top: 2.75rem;
-  padding-top: 1.75rem;
-  border-top: 1px dashed var(--line);
-}
-
-.anno {
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  color: var(--ink-soft);
-  letter-spacing: 0.01em;
-}
-.anno .t {
-  color: var(--ink-faint);
-}
-.anno .ok {
-  color: var(--mark);
-}
-.anno .flag {
-  color: var(--pen);
-}
-
-/* ------------------------------------------------------------------ */
-/* Pitch contour divider                                               */
-/* ------------------------------------------------------------------ */
-.contour {
-  display: block;
-  width: 100%;
-  height: 48px;
-  margin: 3.5rem 0;
-  color: var(--ink-faint);
-  overflow: visible;
-}
-.contour .line {
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.5;
-}
-.contour .peak {
-  fill: var(--pen);
-}
-
 /* ------------------------------------------------------------------ */
 /* Features                                                            */
 /* ------------------------------------------------------------------ */
@@ -392,65 +338,155 @@ h1 {
   margin-bottom: 1.25rem;
 }
 
-.feature .anno {
-  margin-top: auto;
-  padding-top: 1rem;
-  border-top: 1px solid var(--line);
-}
-
 /* ------------------------------------------------------------------ */
-/* Manuscript — "how a session reads"                                  */
+/* Playback sample                                                     */
 /* ------------------------------------------------------------------ */
-.manuscript {
+.playback-demo {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(17rem, 0.85fr);
+  align-items: stretch;
   background: var(--paper-high);
   border: 1px solid var(--line);
   border-radius: var(--radius-card);
   box-shadow: var(--shadow-card);
-  padding: 1.5rem 1.75rem 0.5rem;
+  overflow: hidden;
 }
 
-.utterance {
-  display: grid;
-  grid-template-columns: 4.5rem 1fr;
-  gap: 1rem;
-  padding: 1.1rem 0;
-  border-bottom: 1px solid var(--line);
-}
-.manuscript .utterance:last-child {
-  border-bottom: none;
+.playback-screen {
+  align-self: center;
+  width: min(calc(100% - 2.5rem), 20rem);
+  margin: 1.25rem auto;
+  overflow: hidden;
+  background: #23201b;
+  border: 1px solid #3b352d;
+  border-radius: 1rem;
+  box-shadow: 0 0.75rem 1.5rem rgba(29, 26, 22, 0.14);
 }
 
-.utterance .ts {
+.playback-head,
+.playback-controls {
+  display: flex;
+  align-items: center;
   font-family: var(--font-mono);
-  font-size: 0.78rem;
-  color: var(--ink-faint);
-  padding-top: 0.35rem;
-  letter-spacing: 0.02em;
+  font-size: 0.72rem;
+  letter-spacing: 0.03em;
 }
 
-.utterance .said {
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-size: 1.18rem;
-  line-height: 1.4;
-  color: var(--ink);
+.playback-head {
+  justify-content: space-between;
+  padding: 0.75rem 0.9rem;
+  color: #dad3c5;
+  border-bottom: 1px solid #3b352d;
 }
 
-.utterance .note {
+.playback-head span:last-child {
+  color: #a69e90;
+}
+
+.playback-stage {
+  position: relative;
+  min-height: 28rem;
+  overflow: hidden;
+  background: #332d26;
+}
+
+.playback-video {
   display: block;
-  margin-top: 0.5rem;
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  line-height: 1.4;
-  letter-spacing: 0.01em;
+  width: 100%;
+  height: 28rem;
+  object-fit: cover;
+  object-position: center 32%;
+  filter: saturate(0.76) contrast(0.93);
 }
-.utterance .note.flag { color: var(--pen); }
-.utterance .note.ok { color: var(--mark); }
 
-/* highlighted span inside spoken text (a pen circle) */
-.hl {
-  color: var(--pen-deep);
-  box-shadow: inset 0 -0.5em 0 var(--pen-wash);
+.playback-stage::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(20, 17, 14, 0.08), rgba(20, 17, 14, 0.42));
+  pointer-events: none;
+}
+
+.playback-controls {
+  gap: 0.65rem;
+  padding: 0.8rem 0.9rem;
+  color: #a69e90;
+}
+
+.playback-play {
+  width: 0;
+  height: 0;
+  border-top: 0.34rem solid transparent;
+  border-bottom: 0.34rem solid transparent;
+  border-left: 0.52rem solid #fdfbf5;
+}
+
+.playback-track {
+  position: relative;
+  flex: 1;
+  height: 1.5rem;
+  overflow: visible;
+  background: linear-gradient(#5a5147, #5a5147) center / 100% 0.25rem no-repeat;
+}
+
+.playback-marker {
+  position: absolute;
+  top: 50%;
+  left: var(--position);
+  z-index: 1;
+  min-width: 2.6rem;
+  padding: 0.24rem 0.35rem;
+  border: 1px solid #8d8477;
+  border-radius: 99px;
+  background: #302b25;
+  color: #bdb4a7;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.01em;
+  transform: translate(-50%, -50%);
+  transition: background-color var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out), opacity var(--dur-fast) var(--ease-out);
+}
+
+.playback-marker.is-active {
+  border-color: #fdfbf5;
+  background: var(--pen);
+  color: #fdfbf5;
+}
+
+.playback-marker.is-muted {
+  opacity: 0.48;
+}
+
+.playback-marker:hover,
+.playback-marker:focus-visible {
+  opacity: 1;
+  border-color: #fdfbf5;
+  outline: none;
+}
+
+.playback-insight {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem;
+  border-left: 1px solid var(--line);
+}
+
+.playback-insight .kicker {
+  margin-bottom: 0.75rem;
+}
+
+.playback-insight h3 {
+  margin-bottom: 0.35rem;
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  font-weight: 500;
+  line-height: 1.1;
+}
+
+.playback-insight > p:last-child {
+  color: var(--ink-soft);
 }
 
 /* ------------------------------------------------------------------ */
@@ -566,6 +602,63 @@ a.text-link:hover {
 }
 
 /* ------------------------------------------------------------------ */
+/* Event claim fallback                                                */
+/* ------------------------------------------------------------------ */
+.redeem-page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+}
+
+.redeem-card {
+  position: relative;
+  z-index: 2;
+  width: min(100%, 34rem);
+  padding: 2.5rem;
+  background: var(--paper-high);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  text-align: center;
+}
+
+.redeem-brand {
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.redeem-card h1 {
+  margin: 0.75rem 0;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 7vw, 3rem);
+  line-height: 1.08;
+  font-weight: 500;
+}
+
+.redeem-card > p:not(.kicker):not(.redeem-note) {
+  color: var(--ink-soft);
+  margin-bottom: 1.5rem;
+}
+
+.redeem-card .btn {
+  width: 100%;
+  justify-content: center;
+}
+
+.redeem-note {
+  color: var(--ink-faint);
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  margin: 1rem 0 1.25rem;
+}
+
+.redeem-home {
+  color: var(--ink-soft);
+  font-size: 0.875rem;
+}
+
+/* ------------------------------------------------------------------ */
 /* Focus                                                               */
 /* ------------------------------------------------------------------ */
 :focus-visible {
@@ -585,6 +678,13 @@ a.text-link:hover {
   .hero {
     padding: 4rem 0 2.5rem;
   }
+  .playback-demo {
+    grid-template-columns: 1fr;
+  }
+  .playback-insight {
+    border-top: 1px solid var(--line);
+    border-left: none;
+  }
 }
 
 @media (max-width: 560px) {
@@ -594,15 +694,18 @@ a.text-link:hover {
   .prose {
     padding: 2rem 1.5rem;
   }
-  .nav-right {
-    gap: 0.75rem;
+  .playback-screen {
+    width: min(calc(100% - 1.5rem), 20rem);
+    margin: 0.75rem auto 0;
   }
-  .utterance {
-    grid-template-columns: 1fr;
-    gap: 0.35rem;
+  .playback-stage {
+    min-height: 23rem;
   }
-  .utterance .ts {
-    padding-top: 0;
+  .playback-video {
+    height: 23rem;
+  }
+  .playback-insight {
+    padding: 1.2rem;
   }
   footer {
     flex-direction: column;

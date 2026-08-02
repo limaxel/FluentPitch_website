@@ -7,7 +7,7 @@
  */
 window.FLUENTPITCH_SITE_COPY = Object.freeze({
   title: 'FluentPitch | AI interview coach',
-  description: 'Practise tailored interviews on your iPhone and review clear feedback on your answers, pacing, eye contact, and posture.',
+  description: 'Practise tailored interviews on your phone and review clear feedback on your answers, pacing, eye contact, and posture.',
   hero: {
     title: 'Rehearse it. Then<br>read the <span class="em">markup</span>.',
     lede: 'Practise a tailored mock interview, then review clear feedback on your answer, pacing, eye contact, and posture.',
@@ -31,8 +31,8 @@ window.FLUENTPITCH_SITE_COPY = Object.freeze({
         body: 'Keep the useful patterns from each session in view as you prepare.',
       },
     ],
-    badge: 'On-device privacy',
-    footnote: 'Raw biometric telemetry never leaves your iPhone.',
+    badge: 'Local recordings',
+    footnote: 'Your practice recordings stay on your phone.',
   },
   featuresHeading: 'What you get from a session',
   featuresIntro: 'One place to review the answer, the delivery, and the job it was meant for.',
@@ -49,8 +49,8 @@ window.FLUENTPITCH_SITE_COPY = Object.freeze({
     },
     {
       kicker: 'Privacy',
-      title: 'Your biometric data stays on your phone',
-      body: 'Video is processed on-device and never uploaded. Raw biometric telemetry never leaves your device.',
+      title: 'Your recordings stay on your phone',
+      body: 'Video and audio are processed on-device and never uploaded. Summary delivery measures can be sent for feedback.',
     },
   ],
   footer: '© 2026 FluentPitch',

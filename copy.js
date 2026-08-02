@@ -9,10 +9,33 @@ window.FLUENTPITCH_SITE_COPY = Object.freeze({
   title: 'FluentPitch | AI interview coach',
   description: 'Practise tailored interviews on your iPhone and review clear feedback on your answers, pacing, eye contact, and posture.',
   hero: {
-    kicker: 'interview coach',
     title: 'Rehearse it. Then<br>read the <span class="em">markup</span>.',
     lede: 'Practise a tailored mock interview, then review clear feedback on your answer, pacing, eye contact, and posture.',
+    cta: 'Join the TestFlight beta',
   },
+  navCta: 'Join the beta',
+  proof: {
+    title: 'Turn one rehearsal into a better next answer.',
+    body: 'FluentPitch gives you a clear read on what you said and how you delivered it, so your next attempt has a direction.',
+    items: [
+      {
+        title: 'Answer',
+        body: 'See which points landed and where the role description asks for more evidence.',
+      },
+      {
+        title: 'Delivery',
+        body: 'Review pacing, eye contact, and posture as measured during the practice session.',
+      },
+      {
+        title: 'Progress',
+        body: 'Keep the useful patterns from each session in view as you prepare.',
+      },
+    ],
+    badge: 'On-device privacy',
+    footnote: 'Raw biometric telemetry never leaves your iPhone.',
+  },
+  featuresHeading: 'What you get from a session',
+  featuresIntro: 'One place to review the answer, the delivery, and the job it was meant for.',
   features: [
     {
       kicker: 'Delivery coaching',

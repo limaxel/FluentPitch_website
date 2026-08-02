@@ -140,6 +140,21 @@ nav {
   gap: 1.25rem;
 }
 
+.nav-link {
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  border-bottom: 2px solid var(--pen);
+  padding-bottom: 2px;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.nav-link:hover {
+  color: var(--pen);
+}
+
 /* Stamp — small mono tag with a border, like a rubber stamp */
 .stamp {
   display: inline-block;
@@ -339,12 +354,13 @@ h1 {
 }
 
 /* ------------------------------------------------------------------ */
-/* Playback sample                                                     */
+/* Product proof                                                       */
 /* ------------------------------------------------------------------ */
-.playback-demo {
+.proof {
   display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(17rem, 0.85fr);
+  grid-template-columns: minmax(17rem, 0.84fr) minmax(0, 1.16fr);
   align-items: stretch;
+  margin-top: 2rem;
   background: var(--paper-high);
   border: 1px solid var(--line);
   border-radius: var(--radius-card);
@@ -352,140 +368,109 @@ h1 {
   overflow: hidden;
 }
 
-.playback-screen {
-  align-self: center;
-  width: min(calc(100% - 2.5rem), 20rem);
-  margin: 1.25rem auto;
-  overflow: hidden;
-  background: #23201b;
-  border: 1px solid #3b352d;
-  border-radius: 1rem;
-  box-shadow: 0 0.75rem 1.5rem rgba(29, 26, 22, 0.14);
-}
-
-.playback-head,
-.playback-controls {
-  display: flex;
-  align-items: center;
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.03em;
-}
-
-.playback-head {
-  justify-content: space-between;
-  padding: 0.75rem 0.9rem;
-  color: #dad3c5;
-  border-bottom: 1px solid #3b352d;
-}
-
-.playback-head span:last-child {
-  color: #a69e90;
-}
-
-.playback-stage {
+.proof-visual {
   position: relative;
-  min-height: 28rem;
+  min-height: 34rem;
   overflow: hidden;
-  background: #332d26;
+  background: #302a25;
 }
 
-.playback-video {
-  display: block;
-  width: 100%;
-  height: 28rem;
-  object-fit: cover;
-  object-position: center 32%;
-  filter: saturate(0.76) contrast(0.93);
-}
-
-.playback-stage::after {
+.proof-visual::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(20, 17, 14, 0.08), rgba(20, 17, 14, 0.42));
+  background: linear-gradient(180deg, rgba(20, 17, 14, 0.02), rgba(20, 17, 14, 0.45));
   pointer-events: none;
 }
 
-.playback-controls {
-  gap: 0.65rem;
-  padding: 0.8rem 0.9rem;
-  color: #a69e90;
+.proof-visual img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 34rem;
+  object-fit: cover;
+  object-position: center;
+  filter: saturate(0.78) contrast(0.96);
 }
 
-.playback-play {
-  width: 0;
-  height: 0;
-  border-top: 0.34rem solid transparent;
-  border-bottom: 0.34rem solid transparent;
-  border-left: 0.52rem solid #fdfbf5;
-}
-
-.playback-track {
-  position: relative;
-  flex: 1;
-  height: 1.5rem;
-  overflow: visible;
-  background: linear-gradient(#5a5147, #5a5147) center / 100% 0.25rem no-repeat;
-}
-
-.playback-marker {
-  position: absolute;
-  top: 50%;
-  left: var(--position);
-  z-index: 1;
-  min-width: 2.6rem;
-  padding: 0.24rem 0.35rem;
-  border: 1px solid #8d8477;
-  border-radius: 99px;
-  background: #302b25;
-  color: #bdb4a7;
-  cursor: pointer;
-  font-family: var(--font-mono);
-  font-size: 0.66rem;
-  letter-spacing: 0.01em;
-  transform: translate(-50%, -50%);
-  transition: background-color var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out), opacity var(--dur-fast) var(--ease-out);
-}
-
-.playback-marker.is-active {
-  border-color: #fdfbf5;
-  background: var(--pen);
-  color: #fdfbf5;
-}
-
-.playback-marker.is-muted {
-  opacity: 0.48;
-}
-
-.playback-marker:hover,
-.playback-marker:focus-visible {
-  opacity: 1;
-  border-color: #fdfbf5;
-  outline: none;
-}
-
-.playback-insight {
+.proof-copy {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 2rem;
-  border-left: 1px solid var(--line);
+  padding: 3rem;
 }
 
-.playback-insight .kicker {
+.proof-copy h2 {
+  max-width: 16ch;
+  margin-bottom: 1rem;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+}
+
+.proof-lede {
+  max-width: 39ch;
+  color: var(--ink-soft);
+  line-height: 1.55;
+}
+
+.insight-list {
+  margin-top: 2rem;
+  border-top: 1px solid var(--line);
+}
+
+.insight {
+  display: grid;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.insight h3 {
+  margin-bottom: 0.15rem;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.15;
+}
+
+.insight p {
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.proof-footnote {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+  color: var(--ink-faint);
+  font-size: 0.82rem;
+}
+
+.proof-footnote .stamp {
+  color: var(--mark);
+  border-color: var(--mark);
+}
+
+.feature-section {
+  margin-top: 5.5rem;
+}
+
+.feature-section .section-head {
+  max-width: 42rem;
+  margin-bottom: 2rem;
+}
+
+.feature-section .section-head h2 {
   margin-bottom: 0.75rem;
 }
 
-.playback-insight h3 {
-  margin-bottom: 0.35rem;
-  font-family: var(--font-display);
-  font-size: 1.45rem;
-  font-weight: 500;
-  line-height: 1.1;
-}
-
-.playback-insight > p:last-child {
+.feature-section .section-head p {
+  max-width: 38ch;
   color: var(--ink-soft);
 }
 
@@ -678,12 +663,18 @@ a.text-link:hover {
   .hero {
     padding: 4rem 0 2.5rem;
   }
-  .playback-demo {
+  .proof {
     grid-template-columns: 1fr;
   }
-  .playback-insight {
+  .proof-visual {
+    min-height: 25rem;
+    max-height: 31rem;
+  }
+  .proof-visual img {
+    min-height: 25rem;
+  }
+  .proof-copy {
     border-top: 1px solid var(--line);
-    border-left: none;
   }
 }
 
@@ -694,18 +685,14 @@ a.text-link:hover {
   .prose {
     padding: 2rem 1.5rem;
   }
-  .playback-screen {
-    width: min(calc(100% - 1.5rem), 20rem);
-    margin: 0.75rem auto 0;
+  .proof-copy {
+    padding: 1.2rem;
   }
-  .playback-stage {
+  .proof-visual {
     min-height: 23rem;
   }
-  .playback-video {
-    height: 23rem;
-  }
-  .playback-insight {
-    padding: 1.2rem;
+  .proof-visual img {
+    min-height: 23rem;
   }
   footer {
     flex-direction: column;

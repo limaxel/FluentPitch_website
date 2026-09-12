@@ -2,7 +2,7 @@
   "applinks": {
     "details": [
       {
-        "appIDs": ["88SGJDK559.com.fluentpitch.app"],
+        "appIDs": ["2KQ8L3MMXL.com.fluentpitch.ac.ios"],
         "components": [
           { "/": "/redeem" },
           { "/": "/redeem/*" }
@@ -11,6 +11,6 @@
     ]
   },
   "webcredentials": {
-    "apps": ["88SGJDK559.com.fluentpitch.app"]
+    "apps": ["2KQ8L3MMXL.com.fluentpitch.ac.ios"]
   }
 }

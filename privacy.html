@@ -23,14 +23,31 @@
 
         <main id="main" class="prose">
             <h1>Privacy Policy</h1>
-            <p><strong>Last updated:</strong> 11 September 2026</p>
+            <p><strong>Last updated:</strong> 23 October 2026</p>
 
             <p>FluentPitch is operated by AI CHAMPS PTE. LTD. ("AI Champs", "we", "us", or "our"). This policy explains what FluentPitch handles when you use the app, what stays on your device, and the choices you have. FluentPitch is an interview-practice tool; it is not a recruitment platform.</p>
 
             <h2>What stays on your device</h2>
-            <p>Your practice recording stays on your phone. We do not upload the video or audio from your practice sessions. If you choose to save a recording to your Photo Library, it remains under your device and Photo Library controls.</p>
+            <p>Your practice recording stays on your phone. We do not upload the video or audio from your practice sessions.</p>
             <p>FluentPitch also processes camera input on your device to measure delivery signals such as eye contact and posture. Raw camera frames, facial landmarks, and gaze coordinates never leave the device. Only aggregate measures, such as an eye-contact percentage for an answer, may be sent to our servers to generate feedback.</p>
             <p>Your speech is transcribed on your device. We send the resulting text transcript—not the audio—to our servers for AI feedback.</p>
+
+            <h2 id="face-data">ARKit, TrueDepth and face data</h2>
+            <h3 id="face-data-collection">Information processed and purpose</h3>
+            <p>On supported Apple devices, FluentPitch uses ARKit face tracking, which may use the TrueDepth camera where available. During calibration and interview practice, the app processes front-camera images, face and head orientation, left and right eye transforms, gaze direction and blink measurements on your device. It also uses an on-device MediaPipe model to estimate body posture. These signals are used only to calibrate and provide interview-delivery coaching, such as estimating eye contact, posture and head stability. FluentPitch does not read or save a face mesh or depth map.</p>
+            <p>FluentPitch does not use these face-tracking signals to identify or authenticate you, build identity profiles, serve or target advertisements, conduct marketing, or train facial-recognition models. Passkey sign-in may separately use Apple's system Face ID prompt; FluentPitch does not receive your Face ID enrollment data.</p>
+
+            <h3 id="face-data-storage">On-device storage and retention</h3>
+            <p>Raw face-tracking signals, including facial landmarks, eye transforms, gaze coordinates and blink measurements, and raw calibration samples are processed in memory and are not uploaded or saved as tracking datasets. After successful calibration, only the fitted calibration coefficients and a summary posture baseline are saved in the app's local, purgeable cache. Raw calibration samples are then discarded. The saved calibration is replaced when you recalibrate and is cleared when you sign out, withdraw practice-data consent or delete your account. Cache data can also be removed by the operating system and is not included in the app's iCloud or device backups.</p>
+            <p>When you record an answer, the video may include your face and your voice. Practice recordings are available in the app's local cache for up to 72 hours from the first recording in the session, subject to a total recording-cache limit of 1 GiB. Expired files are cleaned up when the app next checks recordings or starts practice; the app cannot perform timed deletion while it is not running. Older whole sessions are removed first when space is needed. Recordings may disappear earlier if the operating system clears the cache. Signing out, withdrawing practice-data consent or deleting your account clears local practice recordings. Temporary audio is removed after processing. If you explicitly export recordings or session files using the system share sheet, those copies are stored or shared at your chosen destination and are no longer controlled or deleted by FluentPitch.</p>
+
+            <h3 id="face-data-sharing">Server processing and sharing</h3>
+            <p>Raw camera frames, facial landmarks, eye transforms, gaze coordinates, blink measurements, depth data, calibration samples and practice audio/video are not sent to FluentPitch's servers or third parties. Only derived summary delivery measurements, such as eye-contact percentage, posture score and head-stability score, are sent with the answer transcript for interview feedback.</p>
+            <p>These summaries are processed by our Microsoft Azure-hosted backend, cached temporarily in Redis, and stored with your practice results in Supabase. Relevant summary measurements and transcripts are also sent to our configured AI service providers, including OpenRouter and the model provider handling the request, to generate coaching feedback. The on-device MediaPipe library processes images locally; FluentPitch does not send those images to Google. Face-tracking data and its delivery summaries are not provided to AdMob, advertising platforms, analytics providers, data brokers or information resellers.</p>
+            <p>Temporary Redis practice packets expire within 30 minutes after the last packet for the session. Summary measurements, transcripts and generated feedback are retained with your account's practice history while your account remains active and are removed through Profile → Delete Account. We use these measurements for your requested interview practice and feedback, rather than advertising or unrelated profiling.</p>
+
+            <h3 id="face-data-consent">Consent and deletion choices</h3>
+            <p>Before camera-based practice begins, FluentPitch explains the local face processing and the transfer of transcripts and summary measurements for AI feedback and asks you to agree. You can review this explanation and withdraw consent at Profile → Practice privacy. Withdrawal clears local calibration and recordings and prevents further practice processing until you agree again. To erase existing server-held practice history, use Profile → Delete Account. You can also revoke Camera or Microphone permission in your device's Settings.</p>
 
             <h2>Information we handle</h2>
             <h3>Account and profile information</h3>
@@ -58,13 +75,13 @@
             <ul>
                 <li><strong>Camera:</strong> to record your practice locally and analyse delivery signals on your device.</li>
                 <li><strong>Microphone:</strong> to capture your spoken practice answer for on-device transcription.</li>
-                <li><strong>Photo Library:</strong> to choose an optional profile image or save a practice recording when you ask us to.</li>
+                <li><strong>Photo Library:</strong> to choose an optional profile image.</li>
             </ul>
             <p>You can change these permissions in device settings. Turning them off may prevent parts of interview practice from working.</p>
 
             <h2>Security and retention</h2>
             <p>We use reasonable safeguards designed to protect server-held data, including encryption in transit, restricted access, and database access controls. No system is perfectly secure, but we work to protect the information in our control.</p>
-            <p>We retain server-held account and practice information while your account is active. You can delete your account in the app at <strong>Profile → Delete Account</strong>; deletion is immediate and irreversible for the associated server-held account data. We cannot delete recordings that you have kept on your device or saved to your Photo Library—delete those from the device or Photo Library directly.</p>
+            <p>We retain server-held account and practice information while your account is active. You can delete your account in the app at <strong>Profile → Delete Account</strong>; deletion removes the associated account and database-held practice history. Temporary practice packets have the short cache lifetime described above. Local recording and calibration retention, deletion and user-initiated exports are described in <a href="#face-data-storage">On-device storage and retention</a>.</p>
 
             <h2>Your choices and requests</h2>
             <ul>

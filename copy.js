@@ -1,3 +1,4 @@
+
 /*
  * Public-site English copy.
  *
@@ -11,9 +12,8 @@ window.FLUENTPITCH_SITE_COPY = Object.freeze({
   hero: {
     title: 'Rehearse it. Then<br>read the <span class="em">markup</span>.',
     lede: 'Practise a tailored mock interview, then review clear feedback on your answer, pacing, eye contact, and posture.',
-    cta: 'Join the TestFlight beta',
   },
-  navCta: 'Join the beta',
+  navCta: 'Download on the App Store',
   proof: {
     title: 'Turn one rehearsal into a better next answer.',
     body: 'FluentPitch gives you a clear read on what you said and how you delivered it, so your next attempt has a direction.',
@@ -53,7 +53,7 @@ window.FLUENTPITCH_SITE_COPY = Object.freeze({
       body: 'Video and audio are processed on-device and never uploaded. Summary delivery measures can be sent for feedback.',
     },
   ],
-  footer: '© 2026 FluentPitch',
+  footer: '© 2026 AI Champs Pte. Ltd.',
   redeem: {
     kicker: 'event offer',
     title: 'Open FluentPitch to claim your offer.',
